@@ -25,6 +25,8 @@ public class Application {
 	
 	// commit test1
 	
+	// commit test2
+	
 	
 	public static void main(String[] args) throws Exception {
 	  ApplicationContext ctx = SpringApplication.run(Application.class, args);
