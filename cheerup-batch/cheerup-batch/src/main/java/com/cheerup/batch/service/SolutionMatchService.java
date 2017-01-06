@@ -23,7 +23,7 @@ public class SolutionMatchService {
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	FirebaseApp firebaseApp = null;
-	
+
 	@PostConstruct
 	public void post() throws IOException {
 		FirebaseOptions options = new FirebaseOptions.Builder()
@@ -56,6 +56,8 @@ public class SolutionMatchService {
 			public void onCancelled(DatabaseError arg0) {
 			}
 		});
+		
+		
 		
 		logger.info("doSomething()");
 	}
