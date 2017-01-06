@@ -1,0 +1,49 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE")
+    }
+}
+
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'studyflashcard-batch'
+    version =  '0.1.2'
+}
+
+repositories {
+	maven { url "http://192.168.0.6:8081/nexus/content/groups/public" }
+    maven {
+		url "http://repo1.maven.org/maven2"
+	}
+	maven {
+		url "http://maven.jahia.org/maven2"
+	}
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+	compile 'org.springframework.boot:spring-boot-starter:1.2.5.RELEASE'
+    compile 'org.springframework:spring-context-support:4.1.7.RELEASE'
+    compile 'org.springframework:spring-tx:4.1.7.RELEASE'
+    compile 'org.springframework:spring-jdbc:4.1.7.RELEASE'
+    compile 'org.quartz-scheduler:quartz:2.2.1'
+	compile 'com.oracle:ojdbc6:11.1.0.7.0'
+    compile("commons-dbcp:commons-dbcp:1.4")
+    compile 'com.google.firebase:firebase-server-sdk:[3.0.0,)'
+    
+    testCompile("junit:junit")
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}

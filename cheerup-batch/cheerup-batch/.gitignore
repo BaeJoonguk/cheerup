@@ -1,0 +1,7 @@
+/bin/
+/build/
+/logs/spring.log
+/gradle/
+gradle
+/.gradle
+/error.log
