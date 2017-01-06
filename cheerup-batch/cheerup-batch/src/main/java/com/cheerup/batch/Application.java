@@ -22,6 +22,9 @@ public class Application {
 		solutionMatchService.doSomething();
 	}
 		
+	
+	
+	
 	public static void main(String[] args) throws Exception {
 	  ApplicationContext ctx = SpringApplication.run(Application.class, args);
 	}
