@@ -25,34 +25,31 @@
         android:layout_weight="1" />
 
     <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        >
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
         <RadioButton
-            android:text="사랑"
+            android:id="@+id/radio_love"
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:layout_width="355dp"
-            android:layout_height="100dp"
-            android:id="@+id/radio_love" />
+            android:text="사랑" />
 
         <RadioButton
-            android:text="친구"
+            android:id="@+id/radio_friend"
+            android:layout_width="176dp"
+            android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:layout_width="355dp"
-            android:layout_height="100dp"
-            android:id="@+id/radio_friend" />
+            android:text="친구" />
 
         <RadioButton
-            android:text="취업"
+            android:id="@+id/radio_job"
+            android:layout_width="178dp"
+            android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:layout_width="355dp"
-            android:layout_height="100dp"
-            android:id="@+id/radio_job" />
-
+            android:text="취업" />
     </RadioGroup>
-
-
 
 
 </RelativeLayout>
