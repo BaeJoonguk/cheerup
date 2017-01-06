@@ -50,6 +50,8 @@ public class SolutionMatchService {
 				statisticsRef.setValue(statistics);
 			}
 			
+			
+			
 			@Override
 			public void onCancelled(DatabaseError arg0) {
 			}
