@@ -21,13 +21,7 @@ public class Application {
 	public void post() throws IOException {
 		solutionMatchService.doSomething();
 	}
-	
-	
-	// commit test1
-	
-	// commit test2
-	
-	
+		
 	public static void main(String[] args) throws Exception {
 	  ApplicationContext ctx = SpringApplication.run(Application.class, args);
 	}
