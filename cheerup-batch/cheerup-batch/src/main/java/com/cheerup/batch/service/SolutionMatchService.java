@@ -27,8 +27,8 @@ public class SolutionMatchService {
 	@PostConstruct
 	public void post() throws IOException {
 		FirebaseOptions options = new FirebaseOptions.Builder()
-			      .setServiceAccount(new ClassPathResource("cheerup-f320e-firebase-adminsdk-od65a-09a62a626c.json").getInputStream())
-			      .setDatabaseUrl("https://cheerup-f320e.firebaseio.com/")
+			      .setServiceAccount(new ClassPathResource("fir-test-fb80b-firebase-adminsdk-7rbna-1fb0b3ae29.json").getInputStream())
+			      .setDatabaseUrl("https://fir-test-fb80b.firebaseio.com/")
 			      .build();
 		firebaseApp = FirebaseApp.initializeApp(options);
 	}
