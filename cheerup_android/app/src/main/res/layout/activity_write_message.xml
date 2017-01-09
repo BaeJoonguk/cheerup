@@ -14,7 +14,7 @@
     <Button
         android:text="응원대상 고르기"
         android:gravity="center"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="39dp"

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import com.example.user.cheerup.R;
 import com.example.user.cheerup.adapter.TutorialAdapter;
 
+import me.relex.circleindicator.CircleIndicator;
+
 
 /**
  * 클래스 이름 : public class TutorialActivity extends AppCompatActivity
@@ -36,7 +38,8 @@ public class TutorialActivity extends AppCompatActivity {
         pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(adapter);
 
-//        CircleIndicator indicator = (CircleIndicator) findViewById(R.id.indicator);
-//        indicator.setViewPager(pager);
+        CircleIndicator indicator = (CircleIndicator) findViewById(R.id.indicator);
+        indicator.setViewPager(pager);
+
     }
 }
