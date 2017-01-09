@@ -16,8 +16,8 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="273dp"
-        android:layout_weight="0.23"></LinearLayout>
+        android:layout_weight="0.23"
+        android:layout_height="245dp"></LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
@@ -84,9 +84,11 @@
 
         <Button
             android:id="@+id/signOutButton"
-            android:layout_width="110dp"
             android:layout_height="wrap_content"
-            android:text="Sign Out" />
+            android:text="로그아웃"
+            android:textColor="@color/textColorPrimary"
+            android:background="@color/colorPrimary"
+            android:layout_width="111dp" />
 
 
     </LinearLayout>
