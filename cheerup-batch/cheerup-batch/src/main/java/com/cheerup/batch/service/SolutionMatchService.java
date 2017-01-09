@@ -32,7 +32,7 @@ public class SolutionMatchService {
 			      .build();
 		firebaseApp = FirebaseApp.initializeApp(options);
 	}
-
+	
 	public void doSomething() throws IOException {
 		final FirebaseDatabase database = FirebaseDatabase.getInstance(firebaseApp);
 		DatabaseReference usersRef = database.getReference("users");
@@ -42,7 +42,7 @@ public class SolutionMatchService {
 			public void onDataChange(DataSnapshot dataSnapshot) {
 				HashMap users = (HashMap)dataSnapshot.getValue();
 				System.out.println(users.toString());
-				
+			
 				HashMap<String, Object> statistics = new HashMap<>();
 				statistics.put("userCount", users.size());
 				
