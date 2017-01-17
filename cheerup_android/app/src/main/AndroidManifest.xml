@@ -35,16 +35,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activity.WriteMessageActivity"
+            android:name=".Activity.WriteQActivity"
             android:label="응원의 말 보내기"
             android:theme="@style/MyMaterialTheme.PopupOverlay" />
-
-        <activity
-            android:name=".Activity.ChooseSendActivity"
-            android:label="응원대상 고르기"
-            android:theme="@style/MyMaterialTheme" />
-
-        <activity android:name=".Activity.ReadMessageActivity" />
 
     </application>
 

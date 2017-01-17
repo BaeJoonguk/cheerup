@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="290dp"
+        android:id="@+id/main_cardview"
+        android:layout_gravity="center"
+        card:cardBackgroundColor="#81C784"
+        card:cardCornerRadius="15dp"
+        android:layout_margin="5dp"
+        android:foreground="?selectableItemBackground"
+        android:clickable="true"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="180dp"
+                android:weightSum="1">
+
+                <ImageButton
+                    android:background="@android:color/transparent"
+                    android:layout_width="96dp"
+                    android:layout_height="wrap_content"
+                    card:srcCompat="@drawable/thumb_up"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="43dp"
+                    android:id="@+id/pros_button"
+                    android:layout_marginBottom="12dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:clickable="true" />
+
+                <ImageButton
+                    android:background="@android:color/transparent"
+                    android:layout_width="93dp"
+                    android:layout_height="wrap_content"
+                    card:srcCompat="@drawable/thumb_down"
+                    android:id="@+id/cons_button"
+                    android:layout_alignTop="@+id/pros_button"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginLeft="60dp"
+                    android:clickable="true"
+                    android:layout_weight="0.03" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/mainQ_text"
+                android:layout_height="170dp"
+                android:layout_width="320dp"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

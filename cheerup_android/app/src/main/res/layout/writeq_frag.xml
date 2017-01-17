@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <Button
-        android:text="토닥토닥해주기"
+        android:text="질문하기"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="90dp"

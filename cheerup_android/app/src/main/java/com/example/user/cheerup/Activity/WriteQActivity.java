@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.example.user.cheerup.R;
 import com.firebase.client.Firebase;
 
-public class WriteMessageActivity extends AppCompatActivity implements View.OnClickListener {
+public class WriteQActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button choose_button;
     private Button send_message;
@@ -23,7 +23,7 @@ public class WriteMessageActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_write_message);
+        setContentView(R.layout.activity_write_question);
 
         //Setup code
         Firebase.setAndroidContext(this);
@@ -52,7 +52,7 @@ public class WriteMessageActivity extends AppCompatActivity implements View.OnCl
                 Toast.makeText(getApplicationContext(), "글을 입력해주세요", Toast.LENGTH_SHORT).show();
             }
             else {
-                Intent intent = new Intent(getApplicationContext(), ChooseSendActivity.class);
+                Intent intent = new Intent(getApplicationContext(), WriteQActivity.class);
                 startActivity(intent);
                 finish();
             }
