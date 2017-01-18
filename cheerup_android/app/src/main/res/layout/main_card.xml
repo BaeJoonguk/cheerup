@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:id="@+id/maincard_container"
     android:padding="8dp">
 
     <android.support.v7.widget.CardView
@@ -38,21 +39,21 @@
                 <ImageButton
                     android:background="@android:color/transparent"
                     android:layout_width="96dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="84dp"
                     card:srcCompat="@drawable/thumb_up"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginStart="43dp"
+                    android:layout_marginLeft="25dp"
                     android:id="@+id/pros_button"
                     android:layout_marginBottom="12dp"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:clickable="true" />
+                    android:clickable="true"
+                    android:layout_weight="0.05" />
 
                 <ImageButton
                     android:background="@android:color/transparent"
                     android:layout_width="93dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="85dp"
                     card:srcCompat="@drawable/thumb_down"
                     android:id="@+id/cons_button"
                     android:layout_alignTop="@+id/pros_button"
@@ -60,7 +61,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginLeft="60dp"
                     android:clickable="true"
-                    android:layout_weight="0.03" />
+                    android:layout_weight="0.16" />
 
             </LinearLayout>
 

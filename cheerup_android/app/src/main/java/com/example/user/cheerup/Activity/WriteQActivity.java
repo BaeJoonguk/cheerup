@@ -13,7 +13,6 @@ import com.firebase.client.Firebase;
 
 public class WriteQActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button choose_button;
     private Button send_message;
     private EditText edit_message;
 
@@ -23,7 +22,7 @@ public class WriteQActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_write_question);
+        //setContentView(R.layout.activity_write_question);
 
         //Setup code
         Firebase.setAndroidContext(this);
@@ -36,31 +35,17 @@ public class WriteQActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     public void initview() {
-        choose_button = (Button) findViewById(R.id.choose_button);
-        send_message = (Button) findViewById(R.id.send_message);
+       // send_message = (Button) findViewById(R.id.send_message);
 
-        choose_button.setOnClickListener(this);
+
         send_message.setOnClickListener(this);
 
-        edit_message = (EditText) findViewById(R.id.edit_message);
+        //edit_message = (EditText) findViewById(R.id.edit_message);
     }
 
 
     public void onClick(View v) {
-        if (v == choose_button) {
-            if (edit_message.getText().toString().equals("")) {
-                Toast.makeText(getApplicationContext(), "글을 입력해주세요", Toast.LENGTH_SHORT).show();
-            }
-            else {
-                Intent intent = new Intent(getApplicationContext(), WriteQActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        }
-        else if(v == send_message)
-        {
-            String text = edit_message.getText().toString();
-            firebase.setValue(text);
-        }
+
+
     }
 }

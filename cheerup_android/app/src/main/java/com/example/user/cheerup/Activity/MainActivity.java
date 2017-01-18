@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.example.user.cheerup.Fragment.MyQFragment;
+import com.example.user.cheerup.Fragment.SettingFragment;
 import com.example.user.cheerup.Fragment.WriteQFragment;
 import com.example.user.cheerup.R;
 import com.example.user.cheerup.Fragment.MainFragment;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.addPage(new MainFragment());
         adapter.addPage(new MyQFragment());
         adapter.addPage(new WriteQFragment());
+        adapter.addPage(new SettingFragment());
 
         //set adpapter to pager
         pager.setAdapter(adapter);
