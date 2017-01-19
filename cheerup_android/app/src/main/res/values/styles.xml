@@ -30,8 +30,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="MyMaterialTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
-    <item name="windowNoTitle">false</item>
+    <style name="MyMaterialTheme.PopupOverlay" parent="Theme.AppCompat.NoActionBar">
+    <item name="windowNoTitle">true</item>
     <item name="windowActionBar">true</item>
     <item name="colorPrimary">@color/colorPrimary</item>
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

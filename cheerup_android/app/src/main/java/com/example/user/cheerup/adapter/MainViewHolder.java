@@ -20,8 +20,10 @@ public class  MainViewHolder extends RecyclerView.ViewHolder implements View.OnC
     TextView question;
     ImageButton pros_button; //찬
     ImageButton cons_button; //반
+    int pros_count;
+    int cons_count;
     ItemClickListener itemClickListener;
-    View container;
+    CardView container;
 
 
     public MainViewHolder(View itemView) {
@@ -31,7 +33,7 @@ public class  MainViewHolder extends RecyclerView.ViewHolder implements View.OnC
         question = (TextView) itemView.findViewById(R.id.mainQ_text);
         pros_button = (ImageButton) itemView.findViewById(R.id.pros_button);
         cons_button = (ImageButton) itemView.findViewById(R.id.cons_button);
-        container=(View) itemView.findViewById(R.id.maincard_container);
+        container=(CardView) itemView.findViewById(R.id.main_cardview);
 
         itemView.setOnClickListener(this);
     }
