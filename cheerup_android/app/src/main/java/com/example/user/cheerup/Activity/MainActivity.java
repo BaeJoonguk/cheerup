@@ -6,6 +6,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import com.example.user.cheerup.Fragment.CommentFragment;
 import com.example.user.cheerup.Fragment.MyQFragment;
@@ -17,6 +18,10 @@ import com.example.user.cheerup.adapter.FragPagerAdapter;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    public int userNumber;
+    public String emailAddress;
+    private static Boolean isGetUserInfo = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +39,17 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setupWithViewPager(vp);
         tabLayout.setOnTabSelectedListener(listener(vp));
+
+        if(!isGetUserInfo)
+        {
+            Intent intent = getIntent();
+            UserInfo userInfo = (UserInfo) intent.getSerializableExtra("UserInfo");
+
+            userNumber = userInfo.userNumber;
+            emailAddress = userInfo.emailAddress;
+
+            isGetUserInfo = true;
+        }
 
     }
 

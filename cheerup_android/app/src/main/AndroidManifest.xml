@@ -29,6 +29,7 @@
             android:label=""/>
 
         <activity android:name=".Activity.LoginActivity" />
+        <activity android:name=".Activity.JoinMemberActivity" />
         <activity
             android:name=".Activity.MyMailboxActivity"
             android:label="나의 응원함"
