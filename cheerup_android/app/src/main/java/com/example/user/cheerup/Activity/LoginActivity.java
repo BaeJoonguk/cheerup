@@ -56,6 +56,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     String myJSON;
 
     private static final String TAG_RESULTS="result";
+    private static final String TAG_USERNUMBER = "UserNumber";
     private static final String TAG_PASSWORD = "Password";
 
     JSONArray cards = null;
@@ -64,6 +65,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private EditText editTextPassword;
 
     String userInputPassword;
+    String userInputEmailAddress;
 
     Boolean isCheckEmailAddressAndPassword = false;
 
@@ -125,10 +127,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     private void login() {
 
-        String emailaddress = editTextEmailAddress.getText().toString();
+        userInputEmailAddress = editTextEmailAddress.getText().toString();
         userInputPassword = editTextPassword.getText().toString();
 
-        insertToDatabase(emailaddress, userInputPassword);
+        insertToDatabase(userInputEmailAddress, userInputPassword);
     }
 
     private void insertToDatabase(String emailaddress, String password){
@@ -154,6 +156,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
                     JSONObject c = cards.getJSONObject(0);
                     String password = c.getString(TAG_PASSWORD);
+                    int userNumber = c.getInt(TAG_USERNUMBER);
 
                     if(userInputPassword.equals(password))
                         isCheckEmailAddressAndPassword = true;
@@ -162,7 +165,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
                     if(isCheckEmailAddressAndPassword)
                     {
+                        UserInfo userInfo = new UserInfo(userNumber,userInputEmailAddress);
                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                        intent.putExtra("UserInfo", userInfo);
                         startActivity(intent);
                         finish();
                     }

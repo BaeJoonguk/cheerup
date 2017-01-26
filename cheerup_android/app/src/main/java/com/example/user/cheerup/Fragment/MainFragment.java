@@ -57,6 +57,7 @@ public class MainFragment extends Fragment {
         recyclerView=(RecyclerView) v.findViewById(R.id.main_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 
+
         getData("http://IP Address/getdata.php");
 
         return v;
