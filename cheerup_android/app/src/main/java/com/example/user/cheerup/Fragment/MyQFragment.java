@@ -63,7 +63,7 @@ public class MyQFragment extends Fragment {
     //set Tab title for main_fragment
     @Override
     public String toString() {
-        return "나의 질문함";
+        return "내질문함";
     }
 
 }

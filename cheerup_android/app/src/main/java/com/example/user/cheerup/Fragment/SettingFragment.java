@@ -17,6 +17,14 @@ import com.example.user.cheerup.R;
 
 public class SettingFragment extends Fragment {
 
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        View root = inflater.inflate(R.layout.setting_frag, container, false);
+
+        return root;
+    }
+
     public SettingFragment() {
     }
         //set Tab title for main_fragment
