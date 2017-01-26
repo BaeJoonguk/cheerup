@@ -1,6 +1,8 @@
 package com.example.user.cheerup.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,7 +13,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.user.cheerup.GetnSet.MainFragListItem;
 import com.example.user.cheerup.R;
+import com.example.user.cheerup.adapter.MainFragAdapter;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -22,6 +26,19 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.analytics.FirebaseAnalytics;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener{
 
@@ -35,6 +52,20 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
+
+    String myJSON;
+
+    private static final String TAG_RESULTS="result";
+    private static final String TAG_PASSWORD = "Password";
+
+    JSONArray cards = null;
+
+    private EditText editTextEmailAddress;
+    private EditText editTextPassword;
+
+    String userInputPassword;
+
+    Boolean isCheckEmailAddressAndPassword = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +83,17 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         signOutButton = (Button) findViewById(R.id.signOutButton);
         signOutButton.setOnClickListener(this);
 
-
         initview();
+
     }
 
     public void initview() {
 
         login_button = (Button) findViewById(R.id.login_button); //서적등록버튼
         register_button = (Button) findViewById(R.id.register_button); //도서검색버튼
+
+        editTextEmailAddress = (EditText) findViewById(R.id.user_id2);
+        editTextPassword = (EditText) findViewById(R.id.passwd2);
 
         login_button.setOnClickListener(this);
         register_button.setOnClickListener(this);
@@ -69,13 +103,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     public void onClick(View v) {
         if(v==login_button)
         {
-            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-            startActivity(intent);
-            finish();
+            login();
         }
         else if(v==register_button)
         {
-            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            Intent intent = new Intent(getApplicationContext(),JoinMemberActivity.class);
             startActivity(intent);
             finish();
         }
@@ -89,6 +121,105 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 break;
         }
 
+    }
+
+    private void login() {
+
+        String emailaddress = editTextEmailAddress.getText().toString();
+        userInputPassword = editTextPassword.getText().toString();
+
+        insertToDatabase(emailaddress, userInputPassword);
+    }
+
+    private void insertToDatabase(String emailaddress, String password){
+
+        class InsertData extends AsyncTask<String, Void, String> {
+            ProgressDialog loading;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(LoginActivity.this, "Please Wait", null, true, true);
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+                super.onPostExecute(result);
+
+                myJSON=result;
+
+                try {
+                    JSONObject jsonObj = new JSONObject(myJSON);
+                    cards = jsonObj.getJSONArray(TAG_RESULTS);
+
+                    JSONObject c = cards.getJSONObject(0);
+                    String password = c.getString(TAG_PASSWORD);
+
+                    if(userInputPassword.equals(password))
+                        isCheckEmailAddressAndPassword = true;
+                    else
+                        isCheckEmailAddressAndPassword = false;
+
+                    if(isCheckEmailAddressAndPassword)
+                    {
+                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), "이메일주소와 비밀번호가 일치하지 않습니다.", Toast.LENGTH_LONG).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                loading.dismiss();
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+
+                try{
+                    String EmailAddress = (String)params[0];
+                    String Password = (String)params[1];
+
+                    String link="http://IP Address/login.php";
+                    String data  = URLEncoder.encode("EmailAddress", "UTF-8") + "=" + URLEncoder.encode(EmailAddress, "UTF-8");
+                    data += "&" + URLEncoder.encode("Password", "UTF-8") + "=" + URLEncoder.encode(Password, "UTF-8");
+
+                    URL url = new URL(link);
+                    URLConnection conn = url.openConnection();
+
+                    conn.setDoOutput(true);
+                    OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+
+                    wr.write( data );
+                    wr.flush();
+
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+                    StringBuilder sb = new StringBuilder();
+                    String line = null;
+
+                    // Read Server Response
+                    while((line = reader.readLine()) != null)
+                    {
+                        sb.append(line);
+                        break;
+                    }
+                    return sb.toString();
+                }
+                catch(Exception e){
+                    return new String("Exception: " + e.getMessage());
+                }
+
+            }
+        }
+
+        InsertData task = new InsertData();
+        task.execute(emailaddress,password);
     }
 
     private void signIn() {
