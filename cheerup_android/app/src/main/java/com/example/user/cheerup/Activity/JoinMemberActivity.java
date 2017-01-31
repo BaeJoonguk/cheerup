@@ -109,7 +109,7 @@ public class JoinMemberActivity extends AppCompatActivity implements View.OnClic
                 String EmailAddress = (String)params[0];
                 String Password = (String)params[1];
 
-                String link="http://52.78.63.146/joinmember.php";
+                String link="http://IP Address/joinmember.php";
                 String data  = URLEncoder.encode("EmailAddress", "UTF-8") + "=" + URLEncoder.encode(EmailAddress, "UTF-8");
                 data += "&" + URLEncoder.encode("Password", "UTF-8") + "=" + URLEncoder.encode(Password, "UTF-8");
 
