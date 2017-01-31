@@ -22,6 +22,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
+import static com.example.user.cheerup.Activity.WASIPAddress.insertdata_link;
+
 
 /**
  * Created by user on 2017-01-02.
@@ -64,14 +66,11 @@ public class WriteQFragment extends Fragment {
                     String Contents = (String)params[0];
                     String Writer = (String)params[1];
 
-                    String link="http://IP Address/insert.php";
 
                     String data  = URLEncoder.encode("Contents", "UTF-8") + "=" + URLEncoder.encode(Contents, "UTF-8");
                     data += "&" + URLEncoder.encode("Writer", "UTF-8") + "=" + URLEncoder.encode(Writer, "UTF-8");
 
-
-
-                    URL url = new URL(link);
+                    URL url = new URL(insertdata_link);
                     URLConnection conn = url.openConnection();
 
                     conn.setDoOutput(true);

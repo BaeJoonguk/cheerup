@@ -36,6 +36,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
+import static com.example.user.cheerup.Activity.WASIPAddress.joinmember_link;
+
 
 public class JoinMemberActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -71,7 +73,8 @@ public class JoinMemberActivity extends AppCompatActivity implements View.OnClic
         {
             joinMember();
 
-            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+
             startActivity(intent);
             finish();
         }
@@ -113,7 +116,7 @@ public class JoinMemberActivity extends AppCompatActivity implements View.OnClic
                 String data  = URLEncoder.encode("EmailAddress", "UTF-8") + "=" + URLEncoder.encode(EmailAddress, "UTF-8");
                 data += "&" + URLEncoder.encode("Password", "UTF-8") + "=" + URLEncoder.encode(Password, "UTF-8");
 
-                URL url = new URL(link);
+                URL url = new URL(joinmember_link);
                 URLConnection conn = url.openConnection();
 
                 conn.setDoOutput(true);

@@ -40,6 +40,8 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
+import static com.example.user.cheerup.Activity.WASIPAddress.login_link;
+
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener{
 
     private Button login_button;
@@ -190,11 +192,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                     String EmailAddress = (String)params[0];
                     String Password = (String)params[1];
 
-                    String link="http://IP Address/login.php";
                     String data  = URLEncoder.encode("EmailAddress", "UTF-8") + "=" + URLEncoder.encode(EmailAddress, "UTF-8");
                     data += "&" + URLEncoder.encode("Password", "UTF-8") + "=" + URLEncoder.encode(Password, "UTF-8");
 
-                    URL url = new URL(link);
+                    URL url = new URL(login_link);
                     URLConnection conn = url.openConnection();
 
                     conn.setDoOutput(true);

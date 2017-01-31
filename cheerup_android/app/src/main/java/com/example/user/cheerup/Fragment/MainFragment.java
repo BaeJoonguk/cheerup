@@ -31,6 +31,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static com.example.user.cheerup.Activity.WASIPAddress.getdata_link;
+
 /**
  * Created by user on 2017-01-02.
  *
@@ -57,7 +59,6 @@ public class MainFragment extends Fragment {
         recyclerView=(RecyclerView) v.findViewById(R.id.main_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 
-        getData("IP Address/getdata.php");
 
         return v;
     }
