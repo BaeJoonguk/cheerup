@@ -57,8 +57,12 @@ public class MainFragment extends Fragment {
         recyclerView=(RecyclerView) v.findViewById(R.id.main_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 
+<<<<<<< HEAD
+        getData("http://52.78.63.146/getdata.php");
+=======
 
         getData("http://IP Address/getdata.php");
+>>>>>>> 87d1d3b550d1a7ef1d7812e40ac31039435231da
 
         return v;
     }

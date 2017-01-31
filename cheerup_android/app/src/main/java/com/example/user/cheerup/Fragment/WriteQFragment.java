@@ -67,7 +67,15 @@ public class WriteQFragment extends Fragment {
                     String Contents = (String)params[0];
                     String Writer = (String)params[1];
 
+<<<<<<< HEAD
                     String link="http://IP Address/insert.php";
+=======
+<<<<<<< HEAD
+                    String link="http://52.78.63.146/insert.php";
+=======
+                    String link="http:/IP Address/insert.php";
+>>>>>>> 87d1d3b550d1a7ef1d7812e40ac31039435231da
+>>>>>>> a0ce1f8785989619c19e51d733dd6e2af7235bf9
                     String data  = URLEncoder.encode("Contents", "UTF-8") + "=" + URLEncoder.encode(Contents, "UTF-8");
                     data += "&" + URLEncoder.encode("Writer", "UTF-8") + "=" + URLEncoder.encode(Writer, "UTF-8");
 
