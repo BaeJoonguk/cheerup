@@ -25,18 +25,11 @@
         android:theme="@style/MyMaterialTheme">
         <activity
             android:name=".Activity.MainActivity"
-            android:theme="@style/MyMaterialTheme"
-            android:label=""/>
-
+            android:label=""
+            android:theme="@style/MyMaterialTheme" />
         <activity android:name=".Activity.LoginActivity" />
         <activity android:name=".Activity.JoinMemberActivity" />
-        <activity
-            android:name=".Activity.MyMailboxActivity"
-            android:label="나의 응원함"
-            android:theme="@style/MyMaterialTheme.PopupOverlay" />
-        <activity
-            android:name=".Activity.MyMailboxDetail_Activity"
-            android:theme="@style/MyMaterialTheme" />
+        <activity android:name=".Activity.CommentActivity" />
         <activity android:name=".Activity.TutorialActivity" />
         <activity android:name=".Activity.LoadingActivity">
             <intent-filter>
@@ -45,11 +38,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Activity.WriteQActivity"
-            android:label="응원의 말 보내기"
-            android:theme="@style/MyMaterialTheme.PopupOverlay" />
-        <activity android:name=".Activity.CardDetail_Activity"></activity>
+        <activity android:name=".Activity.CardDetail_Activity" />
+        <activity android:name=".Activity.CardCommentActivity"></activity>
     </application>
 
 </manifest>

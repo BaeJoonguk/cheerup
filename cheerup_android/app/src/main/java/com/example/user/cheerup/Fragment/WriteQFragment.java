@@ -2,7 +2,6 @@ package com.example.user.cheerup.Fragment;
 
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,10 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.user.cheerup.Activity.MainActivity;
-import com.example.user.cheerup.Activity.WriteQActivity;
 import com.example.user.cheerup.R;
 
 import java.io.BufferedReader;
@@ -67,11 +64,8 @@ public class WriteQFragment extends Fragment {
                     String Contents = (String)params[0];
                     String Writer = (String)params[1];
 
-<<<<<<< HEAD
                     String link="http://52.78.63.146/insert.php";
-=======
-                    String link="http:/IP Address/insert.php";
->>>>>>> 87d1d3b550d1a7ef1d7812e40ac31039435231da
+
                     String data  = URLEncoder.encode("Contents", "UTF-8") + "=" + URLEncoder.encode(Contents, "UTF-8");
                     data += "&" + URLEncoder.encode("Writer", "UTF-8") + "=" + URLEncoder.encode(Writer, "UTF-8");
 

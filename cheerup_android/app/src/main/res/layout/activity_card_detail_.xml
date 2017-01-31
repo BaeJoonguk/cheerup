@@ -107,4 +107,14 @@
         </LinearLayout>
     </LinearLayout>
 
+    <Button
+        android:text="댓글보기/댓글쓰기"
+        android:textSize="20sp"
+        android:textColor="@color/textColorPrimary"
+        android:background="@color/colorPrimary"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/comment_button" />
+
 </LinearLayout>
