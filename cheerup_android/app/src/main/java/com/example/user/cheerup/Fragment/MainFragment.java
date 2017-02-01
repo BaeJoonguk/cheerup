@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import com.example.user.cheerup.Activity.MainActivity;
 import com.example.user.cheerup.GetnSet.MainFragListItem;
@@ -106,12 +107,16 @@ public class MainFragment extends Fragment {
             for(int i=0;i<cards.length();i++){
 
                 JSONObject c = cards.getJSONObject(i);
-                String cardnumber = c.getString(TAG_CARDNUMBER);
+                int cardnumber = c.getInt(TAG_CARDNUMBER);
                 String contents = c.getString(TAG_CONTENTS);
                 String writer = c.getString(TAG_WRITER);
 
                 //single cardData
-                cardData=new MainFragListItem(contents);//(id,내용,글쓴이)
+//                cardData=new MainFragListItem(contents);//(id,내용,글쓴이)
+
+                //(id,내용,글쓴이)
+                cardData=new MainFragListItem(cardnumber, contents, writer);
+
                 //add to collection
                 ListData.add(cardData);
             }

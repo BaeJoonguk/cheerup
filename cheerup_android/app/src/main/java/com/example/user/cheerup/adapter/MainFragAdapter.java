@@ -1,7 +1,10 @@
 package com.example.user.cheerup.adapter;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
@@ -15,12 +18,28 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.user.cheerup.Activity.CardDetail_Activity;
+import com.example.user.cheerup.Activity.LoginActivity;
+import com.example.user.cheerup.Activity.MainActivity;
+import com.example.user.cheerup.Activity.UserInfo;
 import com.example.user.cheerup.Fragment.MainFragment;
 import com.example.user.cheerup.GetnSet.MainFragListItem;
 import com.example.user.cheerup.GetnSet.MyQFragListItem;
 import com.example.user.cheerup.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+
+import static com.example.user.cheerup.Activity.WASIPAddress.addcons_link;
+import static com.example.user.cheerup.Activity.WASIPAddress.addpros_link;
+import static com.example.user.cheerup.Activity.WASIPAddress.login_link;
 
 /**
  * Created by user on 2017-01-16.
@@ -57,8 +76,6 @@ public class MainFragAdapter extends RecyclerView.Adapter<MainViewHolder> {
        // holder.sender.setText(item.getsender());
         holder.question.setText(item.getQcontent());
 
-
-
         //버튼 애니메이션션
        final Animation animScale= AnimationUtils.loadAnimation(c,R.anim.scale);
 
@@ -69,6 +86,9 @@ public class MainFragAdapter extends RecyclerView.Adapter<MainViewHolder> {
                 v.startAnimation(animScale);
                 Toast.makeText(c, "찬성합니다", Toast.LENGTH_SHORT).show();
 
+                String cardnumber = String.valueOf(item.getCardNumber());
+                addPros(cardnumber, "");
+
             }
 
         });
@@ -78,6 +98,10 @@ public class MainFragAdapter extends RecyclerView.Adapter<MainViewHolder> {
             public void onClick(View v) {
                 v.startAnimation(animScale);
                 Toast.makeText(c, "반대합니다", Toast.LENGTH_SHORT).show();
+
+                String cardnumber = String.valueOf(item.getCardNumber());
+                addCons(cardnumber, "");
+
             }
 
         });
@@ -111,6 +135,214 @@ public class MainFragAdapter extends RecyclerView.Adapter<MainViewHolder> {
     public int getItemCount() {
         return listData.size();
     }
+
+
+    private void addPros(String cardnumber, String emptydata){
+
+            class InsertData extends AsyncTask<String, Void, String> {
+            //ProgressDialog loading;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                //loading = ProgressDialog.show(LoginActivity.this, "Please Wait", null, true, true);
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+                super.onPostExecute(result);
+/*
+
+                myJSON=result;
+
+                try {
+                    JSONObject jsonObj = new JSONObject(myJSON);
+                    cards = jsonObj.getJSONArray(TAG_RESULTS);
+
+                    JSONObject c = cards.getJSONObject(0);
+                    String password = c.getString(TAG_PASSWORD);
+                    int userNumber = c.getInt(TAG_USERNUMBER);
+
+                    if(userInputPassword.equals(password))
+                        isCheckEmailAddressAndPassword = true;
+                    else
+                        isCheckEmailAddressAndPassword = false;
+
+                    if(isCheckEmailAddressAndPassword)
+                    {
+                        SharedPreferences prefs = getApplicationContext().getSharedPreferences("UserInfo", getApplicationContext().MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putString("EmailAddress", userInputEmailAddress);
+                        editor.commit();
+
+
+                        UserInfo userInfo = new UserInfo(userNumber,userInputEmailAddress);
+                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                        intent.putExtra("UserInfo", userInfo);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), "이메일주소와 비밀번호가 일치하지 않습니다.", Toast.LENGTH_LONG).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+*/
+
+                //loading.dismiss();
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+
+                try{
+                    String CardNumber = (String)params[0];
+                    String EmptyData = (String)params[1];
+
+                    String data  = URLEncoder.encode("CardNumber", "UTF-8") + "=" + URLEncoder.encode(CardNumber, "UTF-8");
+                    data += "&" + URLEncoder.encode("EmptyData", "UTF-8") + "=" + URLEncoder.encode(EmptyData, "UTF-8");
+
+                    URL url = new URL(addpros_link);
+                    URLConnection conn = url.openConnection();
+
+                    conn.setDoOutput(true);
+                    OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+
+                    wr.write( data );
+                    wr.flush();
+
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+                    StringBuilder sb = new StringBuilder();
+                    String line = null;
+
+                    // Read Server Response
+                    while((line = reader.readLine()) != null)
+                    {
+                        sb.append(line);
+                        break;
+                    }
+                    return sb.toString();
+                }
+                catch(Exception e){
+                    return new String("Exception: " + e.getMessage());
+                }
+
+            }
+        }
+
+        InsertData task = new InsertData();
+        task.execute(cardnumber,emptydata);
+    }
+
+
+
+    private void addCons(String cardnumber, String emptydata){
+
+        class InsertData extends AsyncTask<String, Void, String> {
+            //ProgressDialog loading;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                //loading = ProgressDialog.show(LoginActivity.this, "Please Wait", null, true, true);
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+                super.onPostExecute(result);
+/*
+
+                myJSON=result;
+
+                try {
+                    JSONObject jsonObj = new JSONObject(myJSON);
+                    cards = jsonObj.getJSONArray(TAG_RESULTS);
+
+                    JSONObject c = cards.getJSONObject(0);
+                    String password = c.getString(TAG_PASSWORD);
+                    int userNumber = c.getInt(TAG_USERNUMBER);
+
+                    if(userInputPassword.equals(password))
+                        isCheckEmailAddressAndPassword = true;
+                    else
+                        isCheckEmailAddressAndPassword = false;
+
+                    if(isCheckEmailAddressAndPassword)
+                    {
+                        SharedPreferences prefs = getApplicationContext().getSharedPreferences("UserInfo", getApplicationContext().MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putString("EmailAddress", userInputEmailAddress);
+                        editor.commit();
+
+
+                        UserInfo userInfo = new UserInfo(userNumber,userInputEmailAddress);
+                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                        intent.putExtra("UserInfo", userInfo);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), "이메일주소와 비밀번호가 일치하지 않습니다.", Toast.LENGTH_LONG).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+*/
+
+                //loading.dismiss();
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+
+                try{
+                    String CardNumber = (String)params[0];
+                    String EmptyData = (String)params[1];
+
+                    String data  = URLEncoder.encode("CardNumber", "UTF-8") + "=" + URLEncoder.encode(CardNumber, "UTF-8");
+                    data += "&" + URLEncoder.encode("EmptyData", "UTF-8") + "=" + URLEncoder.encode(EmptyData, "UTF-8");
+
+                    URL url = new URL(addcons_link);
+                    URLConnection conn = url.openConnection();
+
+                    conn.setDoOutput(true);
+                    OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+
+                    wr.write( data );
+                    wr.flush();
+
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+                    StringBuilder sb = new StringBuilder();
+                    String line = null;
+
+                    // Read Server Response
+                    while((line = reader.readLine()) != null)
+                    {
+                        sb.append(line);
+                        break;
+                    }
+                    return sb.toString();
+                }
+                catch(Exception e){
+                    return new String("Exception: " + e.getMessage());
+                }
+
+            }
+        }
+
+        InsertData task = new InsertData();
+        task.execute(cardnumber,emptydata);
+    }
+
+
+
 }
 
 
