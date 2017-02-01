@@ -1,6 +1,7 @@
 package com.example.user.cheerup.Activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -39,6 +40,11 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setupWithViewPager(vp);
         tabLayout.setOnTabSelectedListener(listener(vp));
+
+        SharedPreferences prefs = getApplicationContext().getSharedPreferences("UserInfo", getApplicationContext().MODE_PRIVATE);
+        String text = prefs.getString("EmailAddress", "");
+
+        Toast.makeText(MainActivity.this, text, Toast.LENGTH_SHORT).show();
 
         if(!isGetUserInfo)
         {
@@ -86,4 +92,5 @@ public class MainActivity extends AppCompatActivity {
             }
         };
     }
+
 }

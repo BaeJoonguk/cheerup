@@ -4,8 +4,10 @@ package com.example.user.cheerup.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +27,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
+import static android.content.Context.MODE_PRIVATE;
 import static com.example.user.cheerup.Activity.WASIPAddress.insertdata_link;
 
 
@@ -120,10 +123,11 @@ public class WriteQFragment extends Fragment {
             public void onClick(View v){
 
                 String contents = editTextContents.getText().toString();
-                insertToDatabase(contents, "writer");
+                SharedPreferences prefs = getActivity().getApplicationContext().getSharedPreferences("UserInfo", getActivity().getApplicationContext().MODE_PRIVATE);
+                String text = prefs.getString("EmailAddress", "");
+                insertToDatabase(contents, text);
 
                 Intent intent=new Intent(getActivity(), MainActivity.class);
-                //Toast.makeText(,"질문등록 완료", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
                 getActivity().finish();
             }
@@ -137,5 +141,6 @@ public class WriteQFragment extends Fragment {
     public String toString() {
         return "질문하기";
     }
+
 
 }

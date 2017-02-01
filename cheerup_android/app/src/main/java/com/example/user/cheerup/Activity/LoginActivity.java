@@ -2,6 +2,7 @@ package com.example.user.cheerup.Activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -167,6 +168,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
                     if(isCheckEmailAddressAndPassword)
                     {
+                        SharedPreferences prefs = getApplicationContext().getSharedPreferences("UserInfo", getApplicationContext().MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putString("EmailAddress", userInputEmailAddress);
+                        editor.commit();
+
+
                         UserInfo userInfo = new UserInfo(userNumber,userInputEmailAddress);
                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                         intent.putExtra("UserInfo", userInfo);
