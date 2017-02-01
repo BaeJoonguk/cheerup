@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
         mGoogleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, this).addApi(Auth.GOOGLE_SIGN_IN_API, gso).build();
 
-        statusTextView = (TextView) findViewById(R.id.status_textview);
+       // statusTextView = (TextView) findViewById(R.id.status_textview);
         signInButton = (SignInButton) findViewById(R.id.sign_in_button);
         signInButton.setOnClickListener(this);
 
@@ -173,6 +173,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                         editor.putString("EmailAddress", userInputEmailAddress);
                         editor.commit();
 
+                        Toast.makeText(getApplicationContext(), "환영합니다", Toast.LENGTH_LONG).show();
 
                         UserInfo userInfo = new UserInfo(userNumber,userInputEmailAddress);
                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);

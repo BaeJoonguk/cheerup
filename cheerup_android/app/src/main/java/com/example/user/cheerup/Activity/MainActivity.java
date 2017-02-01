@@ -10,8 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import com.example.user.cheerup.Fragment.CommentFragment;
-import com.example.user.cheerup.Fragment.MyQFragment;
-import com.example.user.cheerup.Fragment.SettingFragment;
 import com.example.user.cheerup.Fragment.WriteQFragment;
 import com.example.user.cheerup.R;
 import com.example.user.cheerup.Fragment.MainFragment;
@@ -63,10 +61,8 @@ public class MainActivity extends AppCompatActivity {
     private void addPages(ViewPager pager) {
         FragPagerAdapter adapter = new FragPagerAdapter(getSupportFragmentManager());
         adapter.addPage(new MainFragment());
-        adapter.addPage(new MyQFragment());
         adapter.addPage(new WriteQFragment());
         adapter.addPage(new CommentFragment());
-        adapter.addPage(new SettingFragment());
 
 
         //set adpapter to pager

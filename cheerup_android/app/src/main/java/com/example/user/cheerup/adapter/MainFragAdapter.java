@@ -3,21 +3,16 @@ package com.example.user.cheerup.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.user.cheerup.Activity.CardDetail_Activity;
-import com.example.user.cheerup.Fragment.MainFragment;
 import com.example.user.cheerup.GetnSet.MainFragListItem;
-import com.example.user.cheerup.GetnSet.MyQFragListItem;
 import com.example.user.cheerup.R;
 
 import java.util.ArrayList;
