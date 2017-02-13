@@ -64,7 +64,7 @@ public class CommentFragment extends Fragment {
     //set Tab title for main_fragment
     @Override
     public String toString () {
-        return "토론";
+        return "이야기";
     }
 
 }
