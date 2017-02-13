@@ -72,6 +72,7 @@
                 android:layout_gravity="center"
                 android:textSize="30sp"
                 android:id="@+id/pros_count"
+                android:layout_marginLeft="50dp"
                 android:layout_height="60dp"
                 android:layout_weight="0.78" />
 
@@ -102,19 +103,10 @@
                 android:textSize="30sp"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_marginLeft="50dp"
                 android:id="@+id/cons_count"
                 android:layout_weight="0.03" />
         </LinearLayout>
     </LinearLayout>
-
-    <Button
-        android:text="댓글보기/댓글쓰기"
-        android:textSize="20sp"
-        android:textColor="@color/textColorPrimary"
-        android:background="@color/colorPrimary"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:id="@+id/comment_button" />
 
 </LinearLayout>

@@ -1,6 +1,5 @@
 package com.example.user.cheerup.Activity;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -9,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
-import com.example.user.cheerup.Fragment.CommentFragment;
+import com.example.user.cheerup.Fragment.MycardFragment;
 import com.example.user.cheerup.Fragment.WriteQFragment;
 import com.example.user.cheerup.R;
 import com.example.user.cheerup.Fragment.MainFragment;
@@ -42,18 +41,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences prefs = getApplicationContext().getSharedPreferences("UserInfo", getApplicationContext().MODE_PRIVATE);
         String text = prefs.getString("EmailAddress", "");
 
-        Toast.makeText(MainActivity.this, text, Toast.LENGTH_SHORT).show();
-
-        if(!isGetUserInfo)
-        {
-            Intent intent = getIntent();
-            UserInfo userInfo = (UserInfo) intent.getSerializableExtra("UserInfo");
-
-            userNumber = userInfo.userNumber;
-            emailAddress = userInfo.emailAddress;
-
-            isGetUserInfo = true;
-        }
+//        Toast.makeText(MainActivity.this, text, Toast.LENGTH_SHORT).show();
 
     }
 
@@ -62,8 +50,7 @@ public class MainActivity extends AppCompatActivity {
         FragPagerAdapter adapter = new FragPagerAdapter(getSupportFragmentManager());
         adapter.addPage(new MainFragment());
         adapter.addPage(new WriteQFragment());
-        adapter.addPage(new CommentFragment());
-
+        adapter.addPage(new MycardFragment());
 
         //set adpapter to pager
         pager.setAdapter(adapter);

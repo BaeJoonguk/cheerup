@@ -48,11 +48,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private Button login_button;
     private Button register_button;
 
-    SignInButton signInButton;
-    Button signOutButton;
-    TextView statusTextView;
-    GoogleApiClient mGoogleApiClient;
-
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
 
@@ -77,19 +72,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-
-        mGoogleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, this).addApi(Auth.GOOGLE_SIGN_IN_API, gso).build();
-
-       // statusTextView = (TextView) findViewById(R.id.status_textview);
-        signInButton = (SignInButton) findViewById(R.id.sign_in_button);
-        signInButton.setOnClickListener(this);
-
-        signOutButton = (Button) findViewById(R.id.signOutButton);
-        signOutButton.setOnClickListener(this);
-
         initview();
-
     }
 
     public void initview() {
@@ -116,16 +99,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             startActivity(intent);
             finish();
         }
-
-        switch (v.getId()) {
-            case R.id.sign_in_button:
-                signIn();
-                break;
-            case R.id.signOutButton:
-                signOut();
-                break;
-        }
-
     }
 
     private void login() {
@@ -159,7 +132,9 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
                     JSONObject c = cards.getJSONObject(0);
                     String password = c.getString(TAG_PASSWORD);
-                    int userNumber = c.getInt(TAG_USERNUMBER);
+//                    int userNumber = c.getInt(TAG_USERNUMBER);
+                    String userNumber = c.getString(TAG_USERNUMBER);
+
 
                     if(userInputPassword.equals(password))
                         isCheckEmailAddressAndPassword = true;
@@ -171,13 +146,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                         SharedPreferences prefs = getApplicationContext().getSharedPreferences("UserInfo", getApplicationContext().MODE_PRIVATE);
                         SharedPreferences.Editor editor = prefs.edit();
                         editor.putString("EmailAddress", userInputEmailAddress);
+                        editor.putString("UserNumber", userNumber);
                         editor.commit();
 
                         Toast.makeText(getApplicationContext(), "환영합니다", Toast.LENGTH_LONG).show();
 
-                        UserInfo userInfo = new UserInfo(userNumber,userInputEmailAddress);
                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                        intent.putExtra("UserInfo", userInfo);
                         startActivity(intent);
                         finish();
                     }
@@ -236,41 +210,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         task.execute(emailaddress,password);
     }
 
-    private void signIn() {
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == RC_SIGN_IN) {
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            handleSignInResult(result);
-        }
-    }
-
-    private void handleSignInResult(GoogleSignInResult result) {
-        Log.d(TAG, "handleSignInResult: " + result.isSuccess());
-        if (result.isSuccess()) {
-            GoogleSignInAccount acct = result.getSignInAccount();
-            statusTextView.setText("Hello, " + acct.getDisplayName());
-        } else {
-        }
-    }
-
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Log.d(TAG, "onConnectionFailed: " + connectionResult);
-    }
-
-    private void signOut(){
-        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
-            @Override
-            public void onResult(@NonNull Status status) {
-                statusTextView.setText("Signed out");
-            }
-        });
     }
 }

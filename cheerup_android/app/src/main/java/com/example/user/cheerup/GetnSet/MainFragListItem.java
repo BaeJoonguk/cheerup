@@ -1,13 +1,19 @@
 package com.example.user.cheerup.GetnSet;
 
+import java.io.Writer;
+
 /**
  * Created by user on 2017-01-16.
  */
 
 public class MainFragListItem {
 
+    private int CardNumber;
+
     //private int Qid;
     private String Qcontent;
+
+    private String Writer;
     //private String sender;
     private int pros_count=0;
     private int cons_count=0;
@@ -23,7 +29,13 @@ public class MainFragListItem {
 
     public MainFragListItem(String qcontent) {this.Qcontent = qcontent;}
 
-   // public int getQidr() {return Qid;}
+    public MainFragListItem(int cardNumber, String qcontent) { this.CardNumber = cardNumber; this.Qcontent = qcontent;}
+
+    public MainFragListItem(int cardNumber, String qcontent, String writer) { this.CardNumber = cardNumber; this.Qcontent = qcontent; this.Writer = writer;}
+
+    public MainFragListItem(int cardNumber, String qcontent, String writer, int pros, int cons) { this.CardNumber = cardNumber; this.Qcontent = qcontent; this.Writer = writer; this.pros_count = pros; this.cons_count = cons;}
+
+    public int getCardNumber() {return CardNumber;}
 
     //public void setQid(String sender) {this.Qid = Qid;}
 

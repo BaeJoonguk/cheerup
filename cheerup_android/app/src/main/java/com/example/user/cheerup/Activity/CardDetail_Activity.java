@@ -14,6 +14,8 @@ public class CardDetail_Activity extends AppCompatActivity implements View.OnCli
     //private Button button_cardcomment;
     private static final String BUNDLE_EXTRAS="BUNDLE_EXTRAS";
     private static final String EXTRA_QUESTION="EXTRA_QUESTION";
+    private static final String TAG_PROS="Pros";
+    private static final String TAG_CONS="Cons";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,14 +27,10 @@ public class CardDetail_Activity extends AppCompatActivity implements View.OnCli
 
     private void initview() {
 
-       // button_cardcomment = (Button) findViewById(R.id.button_cardcomment);
-        //button_cardcomment.setOnClickListener(this);
-
-        //testData
         Bundle extras=getIntent().getBundleExtra(BUNDLE_EXTRAS);
         ((TextView) findViewById(R.id.myQ_text)).setText(extras.getString(EXTRA_QUESTION));
-        //
-
+        ((TextView) findViewById(R.id.pros_count)).setText(extras.getString(TAG_PROS));
+        ((TextView) findViewById(R.id.cons_count)).setText(extras.getString(TAG_CONS));
     }
 
     @Override
