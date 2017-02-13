@@ -69,7 +69,6 @@ public class WriteQFragment extends Fragment {
                     String Contents = (String)params[0];
                     String Writer = (String)params[1];
 
-
                     String data  = URLEncoder.encode("Contents", "UTF-8") + "=" + URLEncoder.encode(Contents, "UTF-8");
                     data += "&" + URLEncoder.encode("Writer", "UTF-8") + "=" + URLEncoder.encode(Writer, "UTF-8");
 
@@ -121,9 +120,11 @@ public class WriteQFragment extends Fragment {
             public void onClick(View v){
 
                 String contents = editTextContents.getText().toString();
+
                 SharedPreferences prefs = getActivity().getApplicationContext().getSharedPreferences("UserInfo", getActivity().getApplicationContext().MODE_PRIVATE);
-                String text = prefs.getString("EmailAddress", "");
-                insertToDatabase(contents, text);
+                String writer = prefs.getString("EmailAddress", "");
+
+                insertToDatabase(contents, writer);
 
                 Intent intent=new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
@@ -139,6 +140,4 @@ public class WriteQFragment extends Fragment {
     public String toString() {
         return "질문하기";
     }
-
-
 }

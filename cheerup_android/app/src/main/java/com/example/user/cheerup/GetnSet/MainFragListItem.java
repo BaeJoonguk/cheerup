@@ -33,6 +33,8 @@ public class MainFragListItem {
 
     public MainFragListItem(int cardNumber, String qcontent, String writer) { this.CardNumber = cardNumber; this.Qcontent = qcontent; this.Writer = writer;}
 
+    public MainFragListItem(int cardNumber, String qcontent, String writer, int pros, int cons) { this.CardNumber = cardNumber; this.Qcontent = qcontent; this.Writer = writer; this.pros_count = pros; this.cons_count = cons;}
+
     public int getCardNumber() {return CardNumber;}
 
     //public void setQid(String sender) {this.Qid = Qid;}

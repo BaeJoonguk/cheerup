@@ -1,22 +1,15 @@
 package com.example.user.cheerup.Fragment;
 
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
-import com.example.user.cheerup.Activity.MainActivity;
 import com.example.user.cheerup.GetnSet.MainFragListItem;
 import com.example.user.cheerup.R;
 import com.example.user.cheerup.adapter.MainFragAdapter;
@@ -27,19 +20,20 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import static com.example.user.cheerup.Activity.WASIPAddress.getdata_link;
+import static com.example.user.cheerup.Activity.WASIPAddress.getmycard_link;
 
 /**
- * Created by user on 2017-01-02.
- *
+ * Created by user on 2017-01-26.
  */
 
-public class MainFragment extends Fragment {
+public class MycardFragment extends Fragment {
 
     String myJSON;
 
@@ -54,25 +48,23 @@ public class MainFragment extends Fragment {
 
     RecyclerView recyclerView;
 
-    @Override
+    public MycardFragment() {
+    }
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v =inflater.inflate(R.layout.main_frag,null);
 
-        recyclerView=(RecyclerView) v.findViewById(R.id.main_recycler);
+        View v =inflater.inflate(R.layout.mycard_frag,null);
+        recyclerView=(RecyclerView) v.findViewById(R.id.mycard_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 
-        getData(getdata_link);
+        SharedPreferences prefs = getActivity().getApplicationContext().getSharedPreferences("UserInfo", getActivity().getApplicationContext().MODE_PRIVATE);
+        String writer = prefs.getString("EmailAddress", "");
+
+        getData(getmycard_link, writer);
 
         return v;
     }
-
-    //set Tab title for main_fragment
-    @Override
-    public String toString() {
-        return "홈";
-    }
-
 
     protected void showList(){
         try {
@@ -103,10 +95,10 @@ public class MainFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
     }
 
-
-    public void getData(String url){
+    public void getData(String url, String writer){
 
         class GetDataJSON extends AsyncTask<String, Void, String> {
 
@@ -114,12 +106,24 @@ public class MainFragment extends Fragment {
             protected String doInBackground(String... params) {
 
                 String uri = params[0];
+                String EmailAddress = (String)params[1];
 
                 BufferedReader bufferedReader = null;
-                try {
-                    URL url = new URL(uri);
 
+                try {
+
+                    String data  = URLEncoder.encode("EmailAddress", "UTF-8") + "=" + URLEncoder.encode(EmailAddress, "UTF-8");
+                    data += "&" + URLEncoder.encode("EmptyData", "UTF-8") + "=" + URLEncoder.encode("", "UTF-8");
+
+                    URL url = new URL(uri);
                     HttpURLConnection con = (HttpURLConnection) url.openConnection();
+
+                    con.setDoOutput(true);
+                    OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream());
+
+                    wr.write( data );
+                    wr.flush();
+
                     StringBuilder sb = new StringBuilder();
 
                     bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
@@ -145,6 +149,12 @@ public class MainFragment extends Fragment {
         }
 
         GetDataJSON g = new GetDataJSON();
-        g.execute(url);
+        g.execute(url, writer);
+    }
+
+    //set Tab title for main_fragment
+    @Override
+    public String toString () {
+        return "내 질문함";
     }
 }

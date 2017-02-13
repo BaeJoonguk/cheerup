@@ -71,22 +71,6 @@
             android:layout_gravity="center_horizontal|center_vertical"
             android:layout_height="35dp" />
 
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/sign_in_button"
-            android:layout_width="150dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"/>
-
-        <Button
-            android:id="@+id/signOutButton"
-            android:layout_height="35dp"
-            android:text="로그아웃"
-            android:textColor="@color/textColorPrimary"
-            android:background="@color/colorPrimary"
-            android:layout_gravity="center"
-            android:layout_width="150dp" />
-
-
     </LinearLayout>
 
 </LinearLayout>
