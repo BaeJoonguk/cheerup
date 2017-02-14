@@ -1,0 +1,197 @@
+package com.elsol.user.cheerup.Activity;
+
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.elsol.user.cheerup.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
+
+import static com.elsol.user.cheerup.Activity.WASIPAddress.login_link;
+
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+
+    private Button login_button;
+    private Button register_button;
+
+    private static final String TAG = "SignInActivity";
+    private static final int RC_SIGN_IN = 9001;
+
+    String myJSON;
+
+    private static final String TAG_RESULTS="result";
+    private static final String TAG_USERNUMBER = "UserNumber";
+    private static final String TAG_PASSWORD = "Password";
+
+    JSONArray cards = null;
+
+    private EditText editTextEmailAddress;
+    private EditText editTextPassword;
+
+    String userInputPassword;
+    String userInputEmailAddress;
+
+    Boolean isCheckEmailAddressAndPassword = false;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+
+        initview();
+    }
+
+    public void initview() {
+
+        login_button = (Button) findViewById(R.id.login_button); //서적등록버튼
+        register_button = (Button) findViewById(R.id.register_button); //도서검색버튼
+
+        editTextEmailAddress = (EditText) findViewById(R.id.user_id2);
+        editTextPassword = (EditText) findViewById(R.id.passwd2);
+
+        login_button.setOnClickListener(this);
+        register_button.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v==login_button)
+        {
+            login();
+        }
+        else if(v==register_button)
+        {
+            Intent intent = new Intent(getApplicationContext(),JoinMemberActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    private void login() {
+
+        userInputEmailAddress = editTextEmailAddress.getText().toString();
+        userInputPassword = editTextPassword.getText().toString();
+
+        insertToDatabase(userInputEmailAddress, userInputPassword);
+    }
+
+    private void insertToDatabase(String emailaddress, String password){
+
+        class InsertData extends AsyncTask<String, Void, String> {
+            ProgressDialog loading;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(LoginActivity.this, "Please Wait", null, true, true);
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+                super.onPostExecute(result);
+
+                myJSON=result;
+
+                try {
+                    JSONObject jsonObj = new JSONObject(myJSON);
+                    cards = jsonObj.getJSONArray(TAG_RESULTS);
+
+                    JSONObject c = cards.getJSONObject(0);
+                    String password = c.getString(TAG_PASSWORD);
+//                    int userNumber = c.getInt(TAG_USERNUMBER);
+                    String userNumber = c.getString(TAG_USERNUMBER);
+
+
+                    if(userInputPassword.equals(password))
+                        isCheckEmailAddressAndPassword = true;
+                    else
+                        isCheckEmailAddressAndPassword = false;
+
+                    if(isCheckEmailAddressAndPassword)
+                    {
+                        SharedPreferences prefs = getApplicationContext().getSharedPreferences("UserInfo", getApplicationContext().MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putString("EmailAddress", userInputEmailAddress);
+                        editor.putString("UserNumber", userNumber);
+                        editor.commit();
+
+                        Toast.makeText(getApplicationContext(), "환영합니다", Toast.LENGTH_LONG).show();
+
+                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), "이메일주소와 비밀번호가 일치하지 않습니다.", Toast.LENGTH_LONG).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                loading.dismiss();
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+
+                try{
+                    String EmailAddress = (String)params[0];
+                    String Password = (String)params[1];
+
+                    String data  = URLEncoder.encode("EmailAddress", "UTF-8") + "=" + URLEncoder.encode(EmailAddress, "UTF-8");
+                    data += "&" + URLEncoder.encode("Password", "UTF-8") + "=" + URLEncoder.encode(Password, "UTF-8");
+
+                    URL url = new URL(login_link);
+                    URLConnection conn = url.openConnection();
+
+                    conn.setDoOutput(true);
+                    OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+
+                    wr.write( data );
+                    wr.flush();
+
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+                    StringBuilder sb = new StringBuilder();
+                    String line = null;
+
+                    // Read Server Response
+                    while((line = reader.readLine()) != null)
+                    {
+                        sb.append(line);
+                        break;
+                    }
+                    return sb.toString();
+                }
+                catch(Exception e){
+                    return new String("Exception: " + e.getMessage());
+                }
+
+            }
+        }
+
+        InsertData task = new InsertData();
+        task.execute(emailaddress,password);
+    }
+}
