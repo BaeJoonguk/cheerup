@@ -67,6 +67,37 @@ public class WriteQFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        View root=inflater.inflate(R.layout.writeq_frag, container, false);
+        Button write_button=(Button)root.findViewById(R.id.write_button) ;
+
+        editTextContents = (EditText) root.findViewById(R.id.Q_editText);
+
+        write_button.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v){
+
+                String contents = editTextContents.getText().toString();
+
+                SharedPreferences prefs = getActivity().getApplicationContext().getSharedPreferences("UserInfo", getActivity().getApplicationContext().MODE_PRIVATE);
+                String writer = prefs.getString("EmailAddress", "");
+
+                // 서버에 카드 내용과 작성자 이메일 주소 전송
+                insertToDatabase(contents, writer);
+
+                Intent intent=new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
+
+        return root;
+    }
+
+    // 서버에 카드 내용과 작성자 이메일 주소 전송
     private void insertToDatabase(String contents, String writer){
 
         class InsertData extends AsyncTask<String, Void, String> {
@@ -125,36 +156,6 @@ public class WriteQFragment extends Fragment {
 
         InsertData task = new InsertData();
         task.execute(contents,writer);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        View root=inflater.inflate(R.layout.writeq_frag, container, false);
-        Button write_button=(Button)root.findViewById(R.id.write_button) ;
-
-        editTextContents = (EditText) root.findViewById(R.id.Q_editText);
-
-        write_button.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v){
-
-                String contents = editTextContents.getText().toString();
-
-                SharedPreferences prefs = getActivity().getApplicationContext().getSharedPreferences("UserInfo", getActivity().getApplicationContext().MODE_PRIVATE);
-                String writer = prefs.getString("EmailAddress", "");
-
-                insertToDatabase(contents, writer);
-
-                Intent intent=new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
-                getActivity().finish();
-            }
-        });
-
-        return root;
     }
 
     //set Tab title for main_fragment

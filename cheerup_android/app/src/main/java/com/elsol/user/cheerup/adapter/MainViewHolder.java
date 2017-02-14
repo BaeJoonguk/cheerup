@@ -9,10 +9,6 @@ import android.widget.TextView;
 import com.elsol.user.cheerup.R;
 
 /**
- * Created by user on 2017-01-17.
- */
-
-/**
  클래스명 : public class  MainViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
  주된기능 : 보여지는 텍스트와 이미지뷰를 컨테이너에 묶고 이를 클릭했을 시 반응한다.
  멤버변수 :

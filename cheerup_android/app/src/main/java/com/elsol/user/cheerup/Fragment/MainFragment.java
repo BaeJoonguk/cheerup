@@ -79,18 +79,13 @@ public class MainFragment extends Fragment {
         recyclerView=(RecyclerView) v.findViewById(R.id.main_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 
+        // 서버에 있는 카드 데이터 가져오기
         getData(getdata_link);
 
         return v;
     }
 
-    //set Tab title for main_fragment
-    @Override
-    public String toString() {
-        return "홈";
-    }
-
-
+    // 서버에서 가져온 카드 데이터 recyclerView에 적용
     protected void showList(){
         try {
             JSONObject jsonObj = new JSONObject(myJSON);
@@ -122,7 +117,7 @@ public class MainFragment extends Fragment {
         }
     }
 
-
+    // 서버에 있는 카드 데이터 가져오기
     public void getData(String url){
 
         class GetDataJSON extends AsyncTask<String, Void, String> {
@@ -163,5 +158,11 @@ public class MainFragment extends Fragment {
 
         GetDataJSON g = new GetDataJSON();
         g.execute(url);
+    }
+
+    //set Tab title for main_fragment
+    @Override
+    public String toString() {
+        return "홈";
     }
 }

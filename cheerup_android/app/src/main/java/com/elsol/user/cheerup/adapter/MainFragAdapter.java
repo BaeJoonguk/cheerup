@@ -32,10 +32,6 @@ import static com.elsol.user.cheerup.Activity.WASIPAddress.addcons_link;
 import static com.elsol.user.cheerup.Activity.WASIPAddress.addpros_link;
 
 /**
- * Created by user on 2017-01-16.
- */
-
-/**
  클래스명 : public class MainFragAdapter extends RecyclerView.Adapter<MainViewHolder>
  주된기능 : MainFragListItem의 정보를 어댑터를 통해 받아들인다.
  멤버변수 :
@@ -136,14 +132,13 @@ public class MainFragAdapter extends RecyclerView.Adapter<MainViewHolder> {
             @Override
             public void onClick(View v) {
 
+                // 해당 카드의 CardDetail_Activity로 전환
                 Intent intent = new Intent().setClass(v.getContext(),CardDetail_Activity.class);
 
-                //test data transition
                 Bundle extras=new Bundle();
                 extras.putString(EXTRA_QUESTION,item.getQcontent());
                 extras.putString(TAG_PROS, String.valueOf(item.getPros_count()));
                 extras.putString(TAG_CONS, String.valueOf(item.getCons_count()));
-
                 intent.putExtra(BUNDLE_EXTRAS,extras);
 
                 v.getContext().startActivity(intent);
@@ -192,6 +187,7 @@ public class MainFragAdapter extends RecyclerView.Adapter<MainViewHolder> {
                     item.setPros_count(Integer.parseInt(pros));
                     item.setCons_count(Integer.parseInt(cons));
 
+                    // 해당 카드의 CardDetail_Activity로 전환
                     Intent intent = new Intent().setClass(v.getContext(),CardDetail_Activity.class);
 
                     Bundle extras=new Bundle();
@@ -251,8 +247,6 @@ public class MainFragAdapter extends RecyclerView.Adapter<MainViewHolder> {
         task.execute(cardnumber,emptydata);
     }
 
-
-
     private void addCons(String cardnumber, final String emptydata, final View v, final MainFragListItem item){
 
         class InsertData extends AsyncTask<String, Void, String> {
@@ -282,6 +276,7 @@ public class MainFragAdapter extends RecyclerView.Adapter<MainViewHolder> {
                     item.setPros_count(Integer.parseInt(pros));
                     item.setCons_count(Integer.parseInt(cons));
 
+                    // 해당 카드의 CardDetail_Activity로 전환
                     Intent intent = new Intent().setClass(v.getContext(),CardDetail_Activity.class);
 
                     Bundle extras=new Bundle();
@@ -337,7 +332,6 @@ public class MainFragAdapter extends RecyclerView.Adapter<MainViewHolder> {
 
             }
         }
-
         InsertData task = new InsertData();
         task.execute(cardnumber,emptydata);
     }

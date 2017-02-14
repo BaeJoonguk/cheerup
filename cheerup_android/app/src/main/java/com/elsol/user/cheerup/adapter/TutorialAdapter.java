@@ -10,10 +10,6 @@ import com.elsol.user.cheerup.Tutorial.GetMessageTut;
 import com.elsol.user.cheerup.Tutorial.WriteMessageTut;
 
 /**
- * Created by user on 2017-01-04.
- */
-
-/**
  * 클래스 이름 : public class TutorialAdapter extends FragmentPagerAdapter
  * 주요 기능 : 튜토리얼에 해당되는 각 프레그먼트들을 하나로 모아 덩어리 화하는 클래스
  *

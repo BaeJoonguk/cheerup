@@ -1,8 +1,8 @@
 package com.elsol.user.cheerup.Activity;
 
-/**
- * Created by user on 2017-01-31.
- */
+/* 클래스 이름 : public class WASIPAddress
+* 주요 기능 : WAS의 IP 주소 및 각 기능에 해당하는 PHP 파일명 저장*
+*/
 
 public class WASIPAddress {
 

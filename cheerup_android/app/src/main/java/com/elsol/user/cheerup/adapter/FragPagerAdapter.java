@@ -7,10 +7,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 
 /**
- * Created by user on 2017-01-16.
- */
-
-/**
  * 클래스 이름 : public class FragPagerAdapter extends FragmentPagerAdapter
  * 주요 기능 : 프래그먼트 페이지에대한 정보를 반환하는 기능
  * 멤버변수

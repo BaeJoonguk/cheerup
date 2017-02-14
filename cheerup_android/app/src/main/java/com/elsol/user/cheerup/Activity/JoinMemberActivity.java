@@ -74,8 +74,8 @@ public class JoinMemberActivity extends AppCompatActivity implements View.OnClic
         editTextEmailAddress = (EditText) findViewById(R.id.user_email);
         editTextPassword = (EditText) findViewById(R.id.user_password);
 
-        register_button = (Button) findViewById(R.id.register_button); //도서검색버튼
-
+        // 회원가입 버튼
+        register_button = (Button) findViewById(R.id.register_button);
         register_button.setOnClickListener(this);
         }
 
@@ -86,8 +86,8 @@ public class JoinMemberActivity extends AppCompatActivity implements View.OnClic
         {
             joinMember();
 
+            // LoginActivity로 전환
             Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
-
             startActivity(intent);
             finish();
         }
@@ -98,6 +98,7 @@ public class JoinMemberActivity extends AppCompatActivity implements View.OnClic
         String mailAddress = editTextEmailAddress.getText().toString();
         String password = editTextPassword.getText().toString();
 
+        // 이메일주소와 비밀번호 서버에 전송
         insertToDatabase(mailAddress,password);
     }
 

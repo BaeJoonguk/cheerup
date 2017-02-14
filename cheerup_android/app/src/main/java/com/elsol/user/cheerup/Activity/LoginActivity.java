@@ -4,10 +4,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -65,6 +63,9 @@ import static com.elsol.user.cheerup.Activity.WASIPAddress.login_link;
 * 매개변수 :@NonNull ConnectionResult connectionResult
 * 주요 기능 : 연결불가에 대한 경고기능
 */
+
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+
     private Button login_button;
     private Button register_button;
 
@@ -97,8 +98,8 @@ import static com.elsol.user.cheerup.Activity.WASIPAddress.login_link;
 
     public void initview() {
 
-        login_button = (Button) findViewById(R.id.login_button); //서적등록버튼
-        register_button = (Button) findViewById(R.id.register_button); //도서검색버튼
+        login_button = (Button) findViewById(R.id.login_button); // 로그인 버튼
+        register_button = (Button) findViewById(R.id.register_button); // 회원가입 버튼
 
         editTextEmailAddress = (EditText) findViewById(R.id.user_id2);
         editTextPassword = (EditText) findViewById(R.id.passwd2);
@@ -115,6 +116,7 @@ import static com.elsol.user.cheerup.Activity.WASIPAddress.login_link;
         }
         else if(v==register_button)
         {
+            // JoinMemberActivity로 전환
             Intent intent = new Intent(getApplicationContext(),JoinMemberActivity.class);
             startActivity(intent);
             finish();
@@ -126,6 +128,7 @@ import static com.elsol.user.cheerup.Activity.WASIPAddress.login_link;
         userInputEmailAddress = editTextEmailAddress.getText().toString();
         userInputPassword = editTextPassword.getText().toString();
 
+        // 사용자가 입력한 이메일과 비밀번호를 서버에 전송
         insertToDatabase(userInputEmailAddress, userInputPassword);
     }
 
@@ -152,17 +155,18 @@ import static com.elsol.user.cheerup.Activity.WASIPAddress.login_link;
 
                     JSONObject c = cards.getJSONObject(0);
                     String password = c.getString(TAG_PASSWORD);
-//                    int userNumber = c.getInt(TAG_USERNUMBER);
                     String userNumber = c.getString(TAG_USERNUMBER);
 
-
+                    // 사용자가 입력한 비밀번호와 서버에 저장된 비밀번호가 일치하는지 확인
                     if(userInputPassword.equals(password))
                         isCheckEmailAddressAndPassword = true;
                     else
                         isCheckEmailAddressAndPassword = false;
 
+
                     if(isCheckEmailAddressAndPassword)
                     {
+                        // 비밀번호가 일치하는 경우 SharedPreferences에 이메일주소와 UserNumber를 저장
                         SharedPreferences prefs = getApplicationContext().getSharedPreferences("UserInfo", getApplicationContext().MODE_PRIVATE);
                         SharedPreferences.Editor editor = prefs.edit();
                         editor.putString("EmailAddress", userInputEmailAddress);
@@ -171,6 +175,7 @@ import static com.elsol.user.cheerup.Activity.WASIPAddress.login_link;
 
                         Toast.makeText(getApplicationContext(), "환영합니다", Toast.LENGTH_LONG).show();
 
+                        // MainActivity로 전환
                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                         startActivity(intent);
                         finish();

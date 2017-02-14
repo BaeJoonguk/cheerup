@@ -43,6 +43,7 @@ public class CardDetail_Activity extends AppCompatActivity implements View.OnCli
 
     private void initview() {
 
+        // Intent를 통해 전달 받은 질문 내용과 찬성, 반대 수를 각 TextView에 적용
         Bundle extras=getIntent().getBundleExtra(BUNDLE_EXTRAS);
         ((TextView) findViewById(R.id.myQ_text)).setText(extras.getString(EXTRA_QUESTION));
         ((TextView) findViewById(R.id.pros_count)).setText(extras.getString(TAG_PROS));

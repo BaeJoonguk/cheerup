@@ -85,11 +85,13 @@ public class MycardFragment extends Fragment {
         SharedPreferences prefs = getActivity().getApplicationContext().getSharedPreferences("UserInfo", getActivity().getApplicationContext().MODE_PRIVATE);
         String writer = prefs.getString("EmailAddress", "");
 
+        // 사용자가 작성한 카드 데이터만 가져오기
         getData(getmycard_link, writer);
 
         return v;
     }
 
+    // 서버에서 가져온 카드 데이터 recyclerView에 적용
     protected void showList(){
         try {
             JSONObject jsonObj = new JSONObject(myJSON);
@@ -122,6 +124,7 @@ public class MycardFragment extends Fragment {
 
     }
 
+    // 사용자가 작성한 카드 데이터만 가져오기
     public void getData(String url, String writer){
 
         class GetDataJSON extends AsyncTask<String, Void, String> {
