@@ -30,6 +30,30 @@ import static com.elsol.user.cheerup.Activity.WASIPAddress.insertdata_link;
  * Created by user on 2017-01-02.
  */
 
+/* 클래스 이름 : public class WriteQFragment extends Fragment
+        * 주요 기능 :탭슬라이드 구조의 메인페이지에 관한 기능
+        * 멤버 변수
+        *String myJSON;
+         private static final String TAG_RESULTS="result";
+         private static final String TAG_CARDNUMBER = "CardNumber";
+         private static final String TAG_CONTENTS ="Contents";
+         private static final String TAG_WRITER ="Writer";
+         private static final String TAG_PROS="Pros";
+         private static final String TAG_CONS="Cons";
+        JSONArray cards = null;
+         RecyclerView recyclerView;
+        * 메소드
+        * public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState)
+        * 매개변수 : LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState
+        * 주요 기능 : 뷰의 생성자
+        * public String toString()
+        * 매개변수 :
+        * 주요 기능 : 탭슬라이드 제목 부여
+        * private void insertToDatabase(String contents, String writer)
+        *  매개변수 :String contents, String writer
+        * 주요 기능 : 데이터값을 디비에 저장
+        */
+
 public class WriteQFragment extends Fragment {
 
     private EditText editTextContents;

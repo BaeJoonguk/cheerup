@@ -7,6 +7,24 @@ import android.widget.TextView;
 
 import com.elsol.user.cheerup.R;
 
+/**
+ * 클래스 이름 : public class CardDetail_Activity extends AppCompatActivity implements View.OnClickListener
+ * 주요 기능 : 카드뷰를 클릭했을 때 화면에 뜨는 카드 디테일뷰를 생성한다
+ *
+ * 멤버 변수
+ * private static final String BUNDLE_EXTRAS
+ * private static final String EXTRA_QUESTION
+ * private static final String TAG_PROS
+ * private static final String TAG_CONS
+ * 메소드
+ * protected void onCreate(Bundle savedInstanceState)
+ * 매개변수 : Bundle savedInstanceState
+ * 주요 기능 : 뷰의 생성자
+ * public void initview()
+ * 매개변수 :
+ * 주요 기능 : 클래스 내의 객체들을 실체화 시킴
+ */
+
 public class CardDetail_Activity extends AppCompatActivity implements View.OnClickListener{
 
     //private Button button_cardcomment;

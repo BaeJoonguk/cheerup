@@ -28,8 +28,43 @@ import java.net.URLEncoder;
 
 import static com.elsol.user.cheerup.Activity.WASIPAddress.login_link;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
-
+/* 클래스 이름 :public class LoginActivity extends AppCompatActivity implements View.OnClickListener
+* 주요 기능 :로그인에 관한 기능
+* 멤버 변수
+* private Button login_button;
+    private Button register_button;
+    private static final String TAG
+    private static final int RC_SIGN_IN
+    String myJSON;
+    private static final String TAG_RESULTS
+    private static final String TAG_USERNUMBER
+    private static final String TAG_PASSWORD
+    JSONArray cards
+    private EditText editTextEmailAddress;
+    private EditText editTextPassword;
+    String userInputPassword;
+    String userInputEmailAddress;
+    Boolean isCheckEmailAddressAndPassword
+* 메소드
+* protected void onCreate(Bundle savedInstanceState)
+* 매개변수 : Bundle savedInstanceState
+* 주요 기능 : 뷰의 생성자
+* public void initview()
+* 매개변수 :
+* 주요 기능 : 클래스 내의 객체들을 실체화 시킴
+* public void onClick(View v)
+* 매개변수 :View v
+* 주요 기능 : 클릭 시 발생하는 액티비티 처리
+* private void login()
+* 매개변수 :
+* 주요 기능 : 입력받은 이메일/비밀번호를 데이터베이스에 삽입하고 같은 정보가있는지 비교
+* private void insertToDatabase(String emailaddress, String password)
+* 매개변수 :String emailaddress, String password
+* 주요 기능 : 데이터베이스에 삽입
+* public void onConnectionFailed(@NonNull ConnectionResult connectionResult)
+* 매개변수 :@NonNull ConnectionResult connectionResult
+* 주요 기능 : 연결불가에 대한 경고기능
+*/
     private Button login_button;
     private Button register_button;
 

@@ -13,6 +13,21 @@ import com.elsol.user.cheerup.R;
 import com.elsol.user.cheerup.Fragment.MainFragment;
 import com.elsol.user.cheerup.adapter.FragPagerAdapter;
 
+/* 클래스 이름 : public class MainActivity extends AppCompatActivity
+        * 주요 기능 :탭슬라이드 구조의 메인페이지에 관한 기능
+        * 멤버 변수
+        *
+        * 메소드
+        * protected void onCreate(Bundle savedInstanceState)
+        * 매개변수 : Bundle savedInstanceState
+        * 주요 기능 : 뷰의 생성자
+        * private void addPages(ViewPager pager)
+        * 매개변수 :ViewPager pager
+        * 주요 기능 : 액티비티 위에 프래그먼트 페이지를 덧붙임
+        * private TabLayout.OnTabSelectedListener listener(final ViewPager pager)
+        *  매개변수 :final ViewPager pager
+        * 주요 기능 : 해당되는 탭슬라이드 버튼을 눌렀을 때 해당 프래그먼트 페이지로 이동
+        */
 
 public class MainActivity extends AppCompatActivity {
 

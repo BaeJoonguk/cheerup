@@ -4,6 +4,16 @@ package com.elsol.user.cheerup.GetnSet;
  * Created by user on 2017-01-16.
  */
 
+/**
+ * 클래스 이름 : public class MainFragListItem
+ * 주요 기능 : 카드의 정보를 외부 매개변수를 통해 입력받아 책 객체를 형성하는 클래스
+ * 멤버변수
+ * private String Qcontent;
+ private String Writer;
+ private int pros_count=0;
+ private int cons_count=0;
+ */
+
 public class MainFragListItem {
 
     private int CardNumber;
