@@ -1,45 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.user.cheerup">
+    package="com.elsol.user.cheerup">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <service android:name=".MyFirebaseMessagingService">
-        <intent-filter>
-            <action android:name="com.google.firebase.MESSAGING_EVENT" />
-        </intent-filter>
-    </service>
-    <service android:name=".MyFirebaseInstanceIDService">
-        <intent-filter>
-            <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-        </intent-filter>
-    </service>
-
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/todak"
+        android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme">
         <activity
-            android:name=".Activity.MainActivity"
+            android:name="com.elsol.user.cheerup.Activity.MainActivity"
             android:label=""
             android:theme="@style/MyMaterialTheme" />
-        <activity android:name=".Activity.LoginActivity" />
-        <activity android:name=".Activity.JoinMemberActivity" />
-        <activity android:name=".Activity.CommentActivity" />
-        <activity android:name=".Activity.TutorialActivity" />
-        <activity android:name=".Activity.LoadingActivity">
+        <activity android:name="com.elsol.user.cheerup.Activity.LoginActivity" />
+        <activity android:name="com.elsol.user.cheerup.Activity.JoinMemberActivity" />
+        <activity android:name="com.elsol.user.cheerup.Activity.TutorialActivity" />
+        <activity android:name="com.elsol.user.cheerup.Activity.LoadingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.CardDetail_Activity" />
-        <activity android:name=".Activity.CardCommentActivity"></activity>
+        <activity android:name="com.elsol.user.cheerup.Activity.CardDetail_Activity" />
     </application>
 
 </manifest>

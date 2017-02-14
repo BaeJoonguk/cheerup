@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/tut_share"
-    tools:context="com.example.user.cheerup.Tutorial.ChooseCharTut">
+    tools:context="com.elsol.user.cheerup.Tutorial.ChooseCharTut">
 
 
 </RelativeLayout>
