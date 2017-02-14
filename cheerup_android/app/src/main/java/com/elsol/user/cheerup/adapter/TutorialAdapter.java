@@ -41,11 +41,11 @@ public class TutorialAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) { // 연속된수를가지고 튜토리얼 진행
 
         if (position == 0)
-            return WriteMessageTut.newInstance();
-        else if (position == 1)
-            return ChooseCharTut.newInstance();
-        else if (position == 2)
             return GetMessageTut.newInstance();
+        else if (position == 1)
+            return WriteMessageTut.newInstance();
+        else if (position == 2)
+            return ChooseCharTut.newInstance();
         else if (position == 3)
             return EndTut.newInstance();
 
