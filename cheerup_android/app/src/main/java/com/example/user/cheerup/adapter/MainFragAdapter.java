@@ -40,6 +40,37 @@ import static java.security.AccessController.getContext;
  * Created by user on 2017-01-16.
  */
 
+/**
+ 클래스명 : public class MainFragAdapter extends RecyclerView.Adapter<MainViewHolder>
+ 주된기능 : MainFragListItem의 정보를 어댑터를 통해 받아들인다.
+ 멤버변수 :
+ String myJSON;
+ private static final String BUNDLE_EXTRAS
+ private static final String EXTRA_QUESTION
+ private static final String TAG_RESULTS
+ private static final String TAG_PROS
+ private static final String TAG_CONS
+ JSONArray ProsAndCons
+ Context c
+ ArrayList<MainFragListItem> listData
+
+ 메소드 :
+ public void setItemClickCallback(final ItemClickCallback itemClickCallback)
+ * 매개변수: final ItemClickCallback itemClickCallback
+ * 기능 : 아이템을 눌렀을 때 반응함
+ public CommentAdapter(List<CommentListItem> listData, Context c)
+ * 매개변수 :List<CommentListItem> listData, Context c
+ * 기능 : CommentListItem의 데이터를 가지고 뷰를 생성
+ public DerpHolder onCreateViewHolder(ViewGroup parent, int viewType)
+ * 매개변수 : ViewGroup parent, int viewType
+ * 기능 : viewholder를 생성
+ public void onBindViewHolder(DerpHolder holder, int position)
+ * 매개변수 : DerpHolder holder, int position
+ * 기능 : 만들어진 ViewHolder에 데이터를 넣는 작업
+ public int getItemCount()
+ * 매개변수 :
+ * 기능 : 데이터 갯수 반환 */
+
 public class MainFragAdapter extends RecyclerView.Adapter<MainViewHolder> {
 
     String myJSON;

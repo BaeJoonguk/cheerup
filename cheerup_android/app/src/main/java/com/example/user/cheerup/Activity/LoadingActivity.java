@@ -12,6 +12,18 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.user.cheerup.R;
 
+/* 클래스 이름 : public class LoadingActivity extends AppCompatActivity
+        * 주요 기능 :로딩에 관한 기능
+        * 멤버 변수
+        *  private  Handler hd;
+        * 메소드
+        * protected void onCreate(Bundle savedInstanceState)
+        * 매개변수 : Bundle savedInstanceState
+        * 주요 기능 : 뷰의 생성자
+        * private class starthandler implements Runnable
+        * 매개변수 :
+        * 주요 기능 : 로딩 완료시 메인액티비티로 이동
+        */
 
 public class LoadingActivity extends AppCompatActivity {
 

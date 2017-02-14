@@ -39,6 +39,33 @@ import java.net.URLEncoder;
 import static com.example.user.cheerup.Activity.WASIPAddress.joinmember_link;
 
 
+        /* 클래스 이름 : public class JoinMemberActivity extends AppCompatActivity implements View.OnClickListener
+        * 주요 기능 : 회원가입에 관한 기능
+        * 멤버 변수
+        *private EditText editTextEmailAddress
+        *private EditText editTextPassword
+        *private Button register_button
+        *private static final String TAG
+        *private static final int RC_SIGN_IN
+        * 메소드
+        * protected void onCreate(Bundle savedInstanceState)
+        * 매개변수 : Bundle savedInstanceState
+        * 주요 기능 : 뷰의 생성자
+        * public void initview()
+        * 매개변수 :
+        * 주요 기능 : 클래스 내의 객체들을 실체화 시킴
+        * public void onClick(View v)
+        * 매개변수 :View v
+        * 주요 기능 : 클릭 시 발생하는 액티비티 처리
+        * private void joinMember()
+        * 매개변수 :
+        * 주요 기능 : 입력받은 이메일/비밀번호를 데이터베이스에 삽입
+        * private void insertToDatabase(String emailaddress, String password)
+        * 매개변수 :String emailaddress, String password
+        * 주요 기능 : 데이터베이스에 삽입
+        */
+
+
 public class JoinMemberActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editTextEmailAddress;
